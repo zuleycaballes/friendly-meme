@@ -90,12 +90,3 @@ header .logo {
     border-radius: 10px;
     text-align: center;
 }
-
-/* Visibilidad de vistas */
-.view {
-    display: none; /* Oculta todas las vistas por defecto */
-}
-
-.view.active {
-    display: block; /* Muestra solo la vista activa */
-}
