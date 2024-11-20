@@ -1,0 +1,98 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FFF8E1;
+    color: #6D4C41;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FDD835;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    max-height: 50px;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #6D4C41;
+    color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+/* Vistas */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Login */
+.login-container {
+    display: flex;
+}
+
+.login-image {
+    flex: 1;
+    max-height: 300px;
+}
+
+.login-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #FFF3E0;
+    border-radius: 10px;
+}
+
+/* Contenedores */
+.contenedores-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contenedor-card {
+    background-color: #FFECB3;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Detalle */
+.contenedor-info {
+    display: flex;
+    justify-content: space-around;
+}
