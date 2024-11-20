@@ -90,9 +90,3 @@ header .logo {
     border-radius: 10px;
     text-align: center;
 }
-
-/* Detalle */
-.contenedor-info {
-    display: flex;
-    justify-content: space-around;
-}
