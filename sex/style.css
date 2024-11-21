@@ -205,7 +205,7 @@ header h2 {
     top: 73px;
     width: 200px;
     height: 100vh;
-    background: #fff3ca;
+    background: #695450;
     transition: transform 0.3s ease;
 }
 
@@ -236,7 +236,7 @@ header h2 {
     display: flex;
     padding: 10px 15px;
     text-decoration: none;
-    color:#6d4c41;
+    color:#FFFAEC;
 }
 
 #sidebar ul li a .text{
