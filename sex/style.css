@@ -94,7 +94,7 @@ header .logo {
     border-radius: 55px; /* Bordes redondeados (opcional) */
     margin-bottom: 15px; /* Espaciado inferior entre los campos */
     text-align: center;
-    margin: 10px;
+    margin: 40px;
 }
 
 .login-boton {
