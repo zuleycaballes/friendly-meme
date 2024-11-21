@@ -1,7 +1,7 @@
 // Manejar el menú lateral
 document.getElementById("menu-btn").addEventListener("click", () => {
     const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("hidden");
+    sidebar.classList.toggle("active");
 });
 
 document.addEventListener('DOMContentLoaded', () => {
