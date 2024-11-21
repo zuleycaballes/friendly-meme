@@ -4,29 +4,65 @@ document.getElementById("menu-btn").addEventListener("click", () => {
     sidebar.classList.toggle("hidden");
 });
 
-// Cambiar vistas al hacer clic en los enlaces
-document.querySelectorAll("a[href^='#']").forEach(link => {
-    link.addEventListener("click", event => {
-        event.preventDefault(); // Evitar comportamiento predeterminado del enlace
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Evita el envío por defecto
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
 
-        const target = link.getAttribute("href").substring(1); // Obtener el ID del destino
-        const views = document.querySelectorAll(".view"); // Todas las vistas
-
-        // Mostrar solo la vista seleccionada
-        views.forEach(view => {
-            if (view.id === target) {
-                view.classList.add("active"); // Mostrar
-                view.classList.remove("hidden");
-            } else {
-                view.classList.remove("active"); // Ocultar
-                view.classList.add("hidden");
-            }
-        });
-
-        // Cerrar el menú lateral si está abierto
-        const sidebar = document.getElementById("sidebar");
-        if (!sidebar.classList.contains("hidden")) {
-            sidebar.classList.add("hidden");
+        if (!username || !password) {
+            alert('Por favor, completa todos los campos.');
+            return;
         }
+
+        // Simulación de verificación de credenciales
+        const correctUsername = 'admin';
+        const correctPassword = '1234';
+
+        if (username === correctUsername && password === correctPassword) {
+            alert('Inicio de sesión exitoso');
+            // Redirigir o actualizar la interfaz según sea necesario
+            showSection("contenedores");
+        } else {
+            alert('Credenciales incorrectas');
+        }
+    });
+
+    // Agregar evento de clic al icono del camión
+    const truckIcon = document.getElementById('truck-icon');
+    truckIcon.addEventListener('click', () => {
+        showSection('sensores');
+    });
+
+    // Agregar evento de clic a todos los contenedores
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.addEventListener('click', () => {
+            showSection('sensores');
+        });
+    });
+});
+
+function showSection(sectionId) {
+    // Ocultar todas las secciones
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Mostrar la sección seleccionada
+    const sectionToShow = document.getElementById(sectionId);
+    if (sectionToShow) {
+        sectionToShow.classList.add('active');
+    }
+}
+
+// Agregar evento al hacer clic en un contenedor
+document.querySelectorAll('.contenedor-card').forEach(card => {
+    card.addEventListener('click', () => {
+        showSection('sensores');
     });
 });

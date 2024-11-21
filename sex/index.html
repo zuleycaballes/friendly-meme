@@ -3,32 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bajo el Sol y la Cerveza</title>
+    <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Menú lateral -->
-    <nav id="sidebar" class="sidebar hidden">
-        <div class="sidebar-header">
-            <h2>Bajo el Sol y la Cerveza</h2>
-        </div>
-        <ul>
-            <li><a href="#login">Usuario</a></li>
-            <li><a href="#contenedores">Contenedores</a></li>
-            <li><a href="#detalle-contenedor">Detalle Contenedor</a></li>
-        </ul>
-        <footer>
-            <p>Contacto</p>
-        </footer>
-    </nav>
-
     <!-- Encabezado -->
     <header>
         <button id="menu-btn" class="menu-btn">☰</button>
         <img src="logo.jpeg" alt="Logo Bajo el Sol y la Cerveza" class="logo">
         <div class="user-info">
-            <p>Bienvenido, 012345!</p>
+            <div class="abril-fatface-regular"> 
+                <p>Bienvenido, 012345!</p>
+            </div>
         </div>
     </header>
 
@@ -37,62 +26,150 @@
         <!-- Página de inicio de sesión -->
         <section id="login" class="view active">
             <div class="login-container">
-                <img src="background.jpg" alt="Paisaje" class="login-image">
+                <img src="background.jpeg" alt="Paisaje" class="login-image">
                 <div class="login-form">
-                    <h2>Iniciar Sesión</h2>
-                    <input type="text" placeholder="Usuario">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Iniciemos!</button>
-                    <div class="login-links">
-                        <a href="#register">Crear cuenta</a>
-                        <a href="#forgot">¿Olvidaste tu contraseña?</a>
+                    <div class="abril-fatface-regular"> 
+                        <div class="login-size">
+                            <h2>Iniciar Sesión</h2>
+                        </div>
+                        <form id="login-form">
+                            <input type="text" id="username" placeholder="Usuario" 
+                                style="width: 200px; height: 40px; font-size: 16px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px;">
+                            <input type="password" id="password" placeholder="Contraseña" 
+                                style="width: 200px; height: 40px; font-size: 16px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px;">
+                            <div class="login-boton">
+                                <button type="submit">Iniciar Sesión</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Vista de contenedores -->
-        <section id="contenedores" class="view hidden">
-            <h2>Contenedores</h2>
-            <div class="contenedores-grid">
-                <div class="contenedor-card">
-                    <img src="truck-icon.png" alt="Contenedor">
-                    <p>Contenedor #001</p>
-                    <p>Ubicación: Mérida, Yucatán</p>
-                </div>
-                <div class="contenedor-card">
-                    <img src="truck-icon.png" alt="Contenedor">
-                    <p>Contenedor #002</p>
-                    <p>Ubicación: Hermosillo, Sonora</p>
-                </div>
-            </div>
-        </section>
+        <!-- Sección de contenedores -->
+<section id="contenedores" class="view hidden">
+    <div class="abril-fatface-regular"> 
+        <h2>Contenedores</h2>
+    </div> 
+    <div class="contenedores-grid">
+        <div class="container">
+            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+            <div class="abril-fatface-regular"> 
+                <p>Contenedor #001</p>
+                <p>Ubicación: Mérida, Yucatan</p>
+            </div> 
+        </div>
+        <div class="container">
+            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+            <div class="abril-fatface-regular"> 
+                <p>Contenedor #002</p>
+                <p>Ubicación: Hermosillo, Sonora</p>
+            </div> 
+        </div>
+        <div class="container">
+            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+            <div class="abril-fatface-regular"> 
+                <p>Contenedor #003</p>
+                <p>Ubicación: Culichisexo, Sinaloa</p>
+            </div> 
+        </div>
+    </div>
+</section>
 
-        <!-- Vista detallada de un contenedor -->
-        <section id="detalle-contenedor" class="view hidden">
-            <h2>Contenedor #003</h2>
-            <div class="contenedor-info">
-                <div class="info-card">27°C<br>Temperatura</div>
-                <div class="info-card">80%<br>Capacidad</div>
-                <div class="info-card">60%<br>Humedad</div>
-                <div class="info-card">Cerrada<br>Carga</div>
-            </div>
-            <div class="registros">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Temperatura</th>
-                            <th>Capacidad</th>
-                            <th>Humedad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Filas dinámicas -->
-                    </tbody>
-                </table>
+        <!-- Sección de sensores -->
+        <section id="sensores" class="view hidden">
+            <header>
+                <h2>CONTENEDOR #001</h2>
+            </header>
+            <div class="sensor-container">
+                <!-- Indicadores principales -->
+                <div class="sensor-stats">
+                    <div class="sensor-card">
+                        <p class="value">27°C</p>
+                        <p class="label">Temperatura</p>
+                    </div>
+                    <div class="sensor-card">
+                        <p class="value">80%</p>
+                        <p class="label">Capacidad</p>
+                    </div>
+                    <div class="sensor-card">
+                        <p class="value">60%</p>
+                        <p class="label">Humedad</p>
+                    </div>
+                    <div class="sensor-card">
+                        <p class="value">Cerrada</p>
+                        <p class="label">Carga</p>
+                    </div>
+                </div>
+        
+                <!-- Registros -->
+                <div class="sensor-records">
+                    <h3>Registros</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha (día/mes/año) y hora (h:m)</th>
+                                <th>Temperatura</th>
+                                <th>Capacidad</th>
+                                <th>Humedad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05/11/2024 - 05:51 pm (GMT-7)</td>
+                                <td>27°C</td>
+                                <td>80%</td>
+                                <td>60%</td>
+                            </tr>
+                            <!-- Repite más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
+        
     </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Conectar al WebSocket en Node-RED
+        const ws = new WebSocket("ws://localhost:1880/ws/sensores"); // Cambia la URL al endpoint WebSocket en Node-RED
+    
+        // Recibir datos del servidor WebSocket
+        ws.onmessage = function(event) {
+            // Parsear los datos recibidos (JSON)
+            const data = JSON.parse(event.data);
+    
+            // Temperatura
+            const temperatura = data.temperatura;
+            document.getElementById("tempValue").innerText = temperatura;
+            const tempPercentage = Math.min(100, (temperatura / 50) * 100); // Escalado para el termómetro
+            document.getElementById("tempFill").style.height = tempPercentage + "%";
+    
+            // Humedad con aguja
+            const humedad = data.humedad;
+            document.getElementById("humValue").innerText = humedad;
+            const humAngle = humedad * 1.8 - 90; // Convertir humedad en ángulo (-90° a 90°)
+            document.getElementById("humNeedle").style.transform = `rotate(${humAngle}deg)`;
+    
+            // Luz con aguja
+            const luz = data.luz;
+            document.getElementById("lightValue").innerText = luz;
+            const lightAngle = luz * 1.8 - 90; // Convertir luz en ángulo (-90° a 90°)
+            document.getElementById("lightNeedle").style.transform = `rotate(${lightAngle}deg)`;
+    
+            // Distancia (tanque)
+            const distancia = data.distancia;
+            document.getElementById("distValue").innerText = distancia;
+            const maxDistance = 20; // Distancia máxima en cm
+            const distPercentage = Math.max(0, 100 - (distancia / maxDistance) * 100); // A mayor distancia, menor nivel
+            document.getElementById("distFill").style.height = distPercentage + "%";
+        };
+    
+        // Manejo de errores de WebSocket
+        ws.onerror = function(error) {
+            console.error("WebSocket Error: ", error);
+        };
+    </script>
 </body>
 </html>
