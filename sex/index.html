@@ -76,131 +76,86 @@
             </div>
         </section>
 
-        <!-- Sección de contenedores -->
+<!-- Sección de contenedores -->
 <section id="contenedores" class="view hidden">
     <div class="abril-fatface-regular"> 
         <h2>Contenedores</h2>
     </div> 
     <div class="contenedores-grid">
-        <div class="container">
-            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+        <div class="container" data-contenedor="001">
+            <img src="truck-icon.png" alt="Contenedor">
             <div class="abril-fatface-regular"> 
                 <p>Contenedor #001</p>
-                <p>Ubicación: Mérida, Yucatan</p>
+                <p>Ubicación: Mérida, Yucatán</p>
             </div> 
         </div>
-        <div class="container">
-            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+        <div class="container" data-contenedor="002">
+            <img src="truck-icon.png" alt="Contenedor">
             <div class="abril-fatface-regular"> 
                 <p>Contenedor #002</p>
                 <p>Ubicación: Hermosillo, Sonora</p>
             </div> 
         </div>
-        <div class="container">
-            <img src="truck-icon.png" alt="Contenedor" id="truck-icon">
+        <div class="container" data-contenedor="003">
+            <img src="truck-icon.png" alt="Contenedor">
             <div class="abril-fatface-regular"> 
                 <p>Contenedor #003</p>
-                <p>Ubicación: Culichisexo, Sinaloa</p>
+                <p>Ubicación: Culiacán, Sinaloa</p>
             </div> 
         </div>
     </div>
 </section>
 
-        <!-- Sección de sensores -->
-        <section id="sensores" class="view hidden">
-            <header>
-                <h2>CONTENEDOR #001</h2>
-            </header>
-            <div class="sensor-container">
-                <!-- Indicadores principales -->
-                <div class="sensor-stats">
-                    <div class="sensor-card">
-                        <p class="value">27°C</p>
-                        <p class="label">Temperatura</p>
-                    </div>
-                    <div class="sensor-card">
-                        <p class="value">80%</p>
-                        <p class="label">Capacidad</p>
-                    </div>
-                    <div class="sensor-card">
-                        <p class="value">60%</p>
-                        <p class="label">Humedad</p>
-                    </div>
-                    <div class="sensor-card">
-                        <p class="value">Cerrada</p>
-                        <p class="label">Carga</p>
-                    </div>
-                </div>
-        
-                <!-- Registros -->
-                <div class="sensor-records">
-                    <h3>Registros</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha (día/mes/año) y hora (h:m)</th>
-                                <th>Temperatura</th>
-                                <th>Capacidad</th>
-                                <th>Humedad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>05/11/2024 - 05:51 pm (GMT-7)</td>
-                                <td>27°C</td>
-                                <td>80%</td>
-                                <td>60%</td>
-                            </tr>
-                            <!-- Repite más filas aquí -->
-                        </tbody>
-                    </table>
-                </div>
+<!-- Sección de sensores -->
+<section id="sensores" class="view hidden">
+    <header>
+        <h2 id="sensor-title">CONTENEDOR #001</h2> <!-- El título cambiará dinámicamente -->
+    </header>
+    <div class="sensor-container">
+        <!-- Indicadores principales -->
+        <div class="sensor-stats">
+            <div class="sensor-card">
+                <p class="value" id="temp-value">-</p> <!-- Cambia a identificadores únicos -->
+                <p class="label">Temperatura</p>
             </div>
-        </section>
+            <div class="sensor-card">
+                <p class="value" id="capacidad-value">-</p>
+                <p class="label">Capacidad</p>
+            </div>
+            <div class="sensor-card">
+                <p class="value" id="humedad-value">-</p>
+                <p class="label">Humedad</p>
+            </div>
+            <div class="sensor-card">
+                <p class="value" id="carga-value">-</p>
+                <p class="label">Carga</p>
+            </div>
+        </div>
+
+        <!-- Registros -->
+        <div class="sensor-records">
+            <h3>Registros</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha (día/mes/año) y hora (h:m)</th>
+                        <th>Temperatura</th>
+                        <th>Capacidad</th>
+                        <th>Humedad</th>
+                    </tr>
+                </thead>
+                <tbody id="records-body">
+                    <!-- Las filas se agregarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
         
     </main>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Conectar al WebSocket en Node-RED
-        const ws = new WebSocket("ws://localhost:1880/ws/sensores"); // Cambia la URL al endpoint WebSocket en Node-RED
-    
-        // Recibir datos del servidor WebSocket
-        ws.onmessage = function(event) {
-            // Parsear los datos recibidos (JSON)
-            const data = JSON.parse(event.data);
-    
-            // Temperatura
-            const temperatura = data.temperatura;
-            document.getElementById("tempValue").innerText = temperatura;
-            const tempPercentage = Math.min(100, (temperatura / 50) * 100); // Escalado para el termómetro
-            document.getElementById("tempFill").style.height = tempPercentage + "%";
-    
-            // Humedad con aguja
-            const humedad = data.humedad;
-            document.getElementById("humValue").innerText = humedad;
-            const humAngle = humedad * 1.8 - 90; // Convertir humedad en ángulo (-90° a 90°)
-            document.getElementById("humNeedle").style.transform = `rotate(${humAngle}deg)`;
-    
-            // Luz con aguja
-            const luz = data.luz;
-            document.getElementById("lightValue").innerText = luz;
-            const lightAngle = luz * 1.8 - 90; // Convertir luz en ángulo (-90° a 90°)
-            document.getElementById("lightNeedle").style.transform = `rotate(${lightAngle}deg)`;
-    
-            // Distancia (tanque)
-            const distancia = data.distancia;
-            document.getElementById("distValue").innerText = distancia;
-            const maxDistance = 20; // Distancia máxima en cm
-            const distPercentage = Math.max(0, 100 - (distancia / maxDistance) * 100); // A mayor distancia, menor nivel
-            document.getElementById("distFill").style.height = distPercentage + "%";
-        };
-    
-        // Manejo de errores de WebSocket
-        ws.onerror = function(error) {
-            console.error("WebSocket Error: ", error);
-        };
-    </script>
 </body>
 </html>

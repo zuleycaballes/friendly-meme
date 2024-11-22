@@ -66,3 +66,56 @@ document.querySelectorAll('.contenedor-card').forEach(card => {
         showSection('sensores');
     });
 });
+
+// Conectar al WebSocket en Node-RED
+const ws = new WebSocket("ws://localhost:1880/ws/sensores"); // Cambia la URL según la configuración de tu Node-RED
+
+// Recibir datos del servidor WebSocket
+ws.onmessage = function (event) {
+    // Parsear los datos recibidos (JSON)
+    const data = JSON.parse(event.data);
+
+    // Actualizar indicadores principales
+    if (data) {
+        // Actualizar Temperatura
+        const temperatura = data.temperatura || 0;
+        document.querySelector(".sensor-card:nth-child(1) .value").innerText = `${temperatura}°C`;
+
+        // Actualizar Capacidad
+        const capacidad = data.capacidad || 0;
+        document.querySelector(".sensor-card:nth-child(2) .value").innerText = `${capacidad}%`;
+
+        // Actualizar Humedad
+        const humedad = data.humedad || 0;
+        document.querySelector(".sensor-card:nth-child(3) .value").innerText = `${humedad}%`;
+
+        // Actualizar Estado de la Carga
+        const carga = data.carga || "Desconocida";
+        document.querySelector(".sensor-card:nth-child(4) .value").innerText = carga;
+
+        // Actualizar Registros (opcional)
+        const registros = document.querySelector(".sensor-records tbody");
+        const now = new Date();
+        const timestamp = `${now.toLocaleDateString()} - ${now.toLocaleTimeString()}`;
+        const nuevaFila = `
+            <tr>
+                <td>${timestamp}</td>
+                <td>${temperatura}°C</td>
+                <td>${capacidad}%</td>
+                <td>${humedad}%</td>
+            </tr>
+        `;
+        registros.insertAdjacentHTML("afterbegin", nuevaFila); // Agregar nuevo registro al inicio
+    }
+};
+
+// Manejo de errores de WebSocket
+ws.onerror = function (error) {
+    console.error("WebSocket Error: ", error);
+};
+
+// Manejo de cierre del WebSocket
+ws.onclose = function () {
+    console.warn("WebSocket cerrado. Intentando reconexión...");
+    // Puedes implementar reconexión si lo deseas
+};
