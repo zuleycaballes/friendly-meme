@@ -11,13 +11,15 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #FDD45E;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 header .logo {
     max-height: 50px;
-    left-marg
+    margin-left: 50px;
 }
 
 /* Vistas */
@@ -101,12 +103,14 @@ header .logo {
 
 /* Contenedores */
 .contenedores-grid {
+    margin-top: 60px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 .contenedor-card {
+    margin-top: 60px;
     background-color: #FFECB3;
     padding: 8px;
     border-radius: 8px;
