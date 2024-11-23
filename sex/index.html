@@ -11,10 +11,9 @@
 </head>
 <body>
     <!-- Encabezado -->
-    <header>
+    <header class="header">
         <button id="menu-btn" class="menu-btn" style="display: none;">☰</button>
-        <img src="logo.jpg" alt="Logo Bajo el Sol y la Cerveza" class="logo">
-        
+        <img src="logo.jpg" alt="Logo Bajo el Sol y la Cerveza" class="logo"> 
     </header>
     <!-- Sliding sidebar -->
     <div id= "sidebar">
@@ -27,24 +26,20 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#contenedores">
                     <span class="text">Contenedores</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#usuario">
                     <span class="text">Sobre Nosotras</span>
                 </a>
             </li>
             <li class="final">
-                <a href="#">
+                <a href="#" class="contacto">
                     <span class="text">Contacto</span>
                 </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="logo2.jpeg" alt="Logo Bajo el Sol y la Cerveza" class="logo">
-                </a>
+                <img src="logo2.jpeg" alt="Logo Bajo el Sol y la Cerveza" id="logo2">
             </li>
         </ul>
     </div>
@@ -72,6 +67,13 @@
                 </div>
             </div>
         </section>
+
+<section id="usuario" class="view hidden">
+    <div class="login-size">
+        <h2>Información de Usuario</h2>
+    </div>
+    
+</section>
 
 <!-- Sección de contenedores -->
 
@@ -106,8 +108,10 @@
 
 <!-- Sección de sensores -->
 <section id="sensores" class="view hidden">
-    <header>
-        <h2 id="sensor-title">CONTENEDOR #001</h2> <!-- El título cambiará dinámicamente -->
+    <header class="header-dark">
+        <div class="sensor-title">
+            <h2 id="sensor-title">CONTENEDOR #001</h2> <!-- El título cambiará dinámicamente -->
+        </div>
     </header>
     <div class="sensor-container">
         <!-- Indicadores principales -->
@@ -133,19 +137,21 @@
         <!-- Registros -->
         <div class="sensor-records">
             <h3>Registros</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha (día/mes/año) y hora (h:m)</th>
-                        <th>Temperatura</th>
-                        <th>Capacidad</th>
-                        <th>Humedad</th>
-                    </tr>
-                </thead>
-                <tbody id="records-body">
-                    <!-- Las filas se agregarán dinámicamente aquí -->
-                </tbody>
-            </table>
+            <div class="records-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha (día/mes/año) y hora (h:m)</th>
+                            <th>Temperatura</th>
+                            <th>Capacidad</th>
+                            <th>Humedad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-body">
+                        <!-- Las filas se agregarán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>

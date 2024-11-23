@@ -1,17 +1,33 @@
 /* General */
-body {
+html, body {
+    height: 100%; /* Asegura que html y body tengan una altura del 100% */
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #FFF8E1;
     color: #6D4C41;
+    position: relative;
+    padding: 20px; /* Añade padding alrededor del contenido */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
+    border: 5px solid #6D4C41; /* Añade un borde alrededor de la página */
 }
 
-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #FDD45E;
+    padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    height: 60px; /* Fija la altura del header */
+    position: relative;
+}
+
+.header-dark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdd55eb1;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
@@ -19,7 +35,82 @@ header {
 
 header .logo {
     max-height: 50px;
-    margin-left: 50px;
+}
+
+/* Botón de menú */
+#menu-btn {
+    display: none; /* Se mostrará en pantallas pequeñas */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed; /* Cambiar de fixed a absolute */
+    left: -200px; /* Inicialmente fuera de la pantalla */
+    top: 80px; /* Ajustar según la altura del header */
+    width: 200px;
+    height: calc(100% - 80px); /* Ajustar la altura */
+    background: #695450;
+    transition: transform 0.3s ease; /* Animación suave al abrir */
+    overflow-y: auto;
+    margin: 0; /* Elimina márgenes */
+    padding: 0; /* Elimina relleno */
+    box-sizing: border-box; /* Asegura que el ancho incluya padding y bordes */
+}
+
+
+/* Sidebar activo (abierto) */
+#sidebar.active {
+    transform: translateX(200px); /* Desplaza el sidebar hacia la derecha */
+}
+
+/* Lista del sidebar */
+#sidebar ul {
+    list-style: none; /* Sin puntos en la lista */
+    padding: 0;
+    margin: 0;
+}
+
+/* Elementos del sidebar */
+#sidebar ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #FFFAEC;
+    font-size: 16px;
+}
+
+#sidebar ul li a:hover {
+    background: rgba(99, 57, 43, 0.3); /* Efecto hover */
+}
+
+/* Logo y Contacto */
+#sidebar ul li.final {
+    position: absolute; /* Posición fija al final del sidebar */
+    bottom: 20px; /* Margen desde la parte inferior */
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#logo2 {
+    width: 60%;
+    height: auto;
+    margin-top: 10px; /* Espaciado entre "Contacto" y el logo */
+}
+
+.contacto {
+    margin: 0;
+    color: #FFFAEC;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contacto:hover {
+    background: rgba(99, 57, 43, 0.3);
 }
 
 /* Vistas */
@@ -29,243 +120,145 @@ header .logo {
     transition: opacity 0.5s ease-in-out;
 }
 
-.view.active {
-    display: block;
-    opacity: 1;
+.hidden {
+    display: none;
 }
 
-
-.hidden {
-    display: none; /* Clase genérica para ocultar elementos */
+.active {
+    display: block;
+    opacity: 1;
 }
 
 
 /* Login */
 .login-container {
     display: flex;
-    width: 100%;
-    height: auto;
+    flex-wrap: wrap; /* Ajustar en pantallas pequeñas */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 .login-image {
     flex: 1;
-    width: 100%;
+    max-width: 500px;
     height: auto;
 }
 
-.login-size {
-    font-size: 50px;
-    padding: 10px; 
+.login-form {
+    flex: 1;
+    max-width: 400px;
     text-align: center;
-    margin: 50px;
 }
 
 .login-form input {
-    width: 300px; /* Ancho del campo */
-    height: 40px; /* Alto del campo */
-    font-size: 16px; /* Tamaño del texto */
-    padding: 30px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 55px; /* Bordes redondeados (opcional) */
-    margin-bottom: 15px; /* Espaciado inferior entre los campos */
-    text-align: center;
-    margin: 40px;
-}
-
-.login-boton {
-    border: 55px; 
+    width: 100%;
     padding: 10px;
-    text-align: center;
-    margin: 10px;
-}
-
-.login-form input:focus {
-    border-color: #007BFF; /* Cambiar el color del borde al enfocarse */
-    outline: none; /* Eliminar el contorno predeterminado */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agregar un brillo sutil */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .login-form button {
-    width: 200px; /* Ancho del botón */
-    height: 50px; /* Alto del botón */
-    font-size: 18px;
-    padding: 10px; 
-    border-radius: 8px; 
+    width: 100%;
+    padding: 10px;
     background-color: #6D4C41;
-    color: white; 
-    border: none; 
-    cursor: pointer; 
-}
-
-.login-form button:hover {
-    background-color: #6D4C41; /* Color al pasar el cursor */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Contenedores */
 .contenedores-grid {
-    margin-top: 60px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.contenedor-card {
-    margin-top: 60px;
-    background-color: #FFECB3;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.abril-fatface-regular {
-    font-family: "Abril Fatface", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-/* Contenedor general de la sección de sensores */
-.sensor-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     padding: 20px;
-    background-color: #FFF8E1;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
 }
 
-/* Títulos */
-header h2 {
-    font-family: "Abril Fatface", serif;
-    font-size: 24px;
-    margin-bottom: 20px;
-    background-color: #6D4C41;
-    color: white;
-    padding: 10px;
+.container {
+    background-color: #FFECB3;
+    padding: 20px;
     border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Indicadores principales */
+.container img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.records-container {
+    max-height: 300px; /* Ajusta la altura según sea necesario */
+    overflow-y: scroll;
+    border: 1px solid #ccc; /* Opcional: añade un borde para distinguir el contenedor */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+/* Sensores */
 .sensor-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
 }
 
 .sensor-card {
     background-color: #FFECB3;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 20%;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.sensor-card .value {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px;
-}
-
-.sensor-card .label {
-    font-size: 16px;
-    color: #6D4C41;
-}
-
-/* Registros */
-.sensor-records {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.sensor-records h3 {
-    font-size: 20px;
-    background-color: #6D4C41;
-    color: white;
-    padding: 10px;
     border-radius: 8px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sensor-records table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
 }
 
-.sensor-records th,
-.sensor-records td {
-    border: 1px solid #CCC;
-    padding: 8px;
+.sensor-records th, .sensor-records td {
+    padding: 10px;
     text-align: center;
+    border: 1px solid #ccc;
 }
 
 .sensor-records th {
     background-color: #FDD45E;
+}
+
+.sensor-title {
     color: #6D4C41;
-    font-weight: bold;
 }
 
-.sensor-records tbody tr:nth-child(even) {
-    background-color: #FFF5CC;
-}
+/* Media Queries */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
 
-#sidebar {
-    position: fixed;
-    left: -200px;
-    top: 73px;
-    width: 200px;
-    height: 150vh;
-    background: #695450;
-    transition: transform 0.3s ease;
-}
+    #menu-btn {
+        display: block; /* Mostrar el botón de menú en pantallas pequeñas */
+    }
 
-#sidebar.active{
-    transform: translateX(200px);
-}
+    #sidebar {
+        top: 0;
+        height: 100%;
+    }
 
-#sidebar ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+    .login-container {
+        flex-direction: column;
+    }
 
-#sidebar ul li:hover{
-    background: #63392b47 ;
-}
+    .contenedores-grid {
+        grid-template-columns: 1fr;
+    }
 
-#sidebar ul li.incio{
-    margin-top: 20px;
-    margin-left: 10px;
-}
-
-#sidebar ul li.final{
-    margin-top: 400px;
-}
-
-#sidebar ul li a{
-    display: flex;
-    padding: 10px 15px;
-    text-decoration: none;
-    color:#FFFAEC;
-}
-
-#sidebar ul li a .text{
-    display: flex;
-    height: 30px;
-}
-
-#sidebar ul li a .logo {
-    display: block;
-    margin-top: -20px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#menu-btn {
-    color:#6d4c41;
-    background: #6d4c4100;    
-    border:0px;
-    position: fixed;
+    .sensor-stats {
+        grid-template-columns: 1fr;
+    }
 }

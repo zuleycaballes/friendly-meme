@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data) {
             // Actualizar indicadores principales
             document.getElementById("temp-value").innerText = `${data.temperatura || "-"}°C`;
-            document.getElementById("capacidad-value").innerText = `${data.capacidad || "-"}%`;
+            document.getElementById("capacidad-value").innerText = `${data.distancia || "-"}%`;
             document.getElementById("humedad-value").innerText = `${data.humedad || "-"}%`;
-            document.getElementById("carga-value").innerText = data.carga || "Desconocida";
+            document.getElementById("carga-value").innerText = data.luz || "Desconocida";
 
             // Actualizar registros en la tabla
             const registros = document.getElementById("records-body");
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <tr>
                     <td>${timestamp}</td>
                     <td>${data.temperatura || "-"}</td>
-                    <td>${data.capacidad || "-"}</td>
+                    <td>${data.distancia || "-"}</td>
                     <td>${data.humedad || "-"}</td>
                 </tr>
             `;
@@ -111,3 +111,4 @@ function showSection(sectionId) {
         menuButton.style.display = "none";
     }
 }
+
