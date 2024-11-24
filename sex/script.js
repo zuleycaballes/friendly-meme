@@ -104,11 +104,19 @@ function showSection(sectionId) {
         sectionToShow.classList.add("active");
     }
 
-    // Mostrar el botón del menú solo en ciertas secciones
-    if (sectionId === "contenedores" || sectionId === "sensores") {
-        menuButton.style.display = "block";
-    } else {
-        menuButton.style.display = "none";
-    }
+    // Mostrar siempre el botón del menú
+    menuButton.style.display = "block";
 }
+
+
+
+// Manejar clics en el sidebar
+const sidebarLinks = document.querySelectorAll("#sidebar a");
+sidebarLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevenir comportamiento predeterminado
+        const sectionId = link.getAttribute("href").substring(1); // Obtener ID de sección sin el '#'
+        showSection(sectionId); // Cambiar a la sección correspondiente
+    });
+});
 

@@ -2,16 +2,15 @@
 html, body {
     height: 100%; /* Asegura que html y body tengan una altura del 100% */
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Georgia, serif;
     background-color: #FFF8E1;
     color: #6D4C41;
     position: relative;
-    padding: 20px; /* Añade padding alrededor del contenido */
-    box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
-    border: 5px solid #6D4C41; /* Añade un borde alrededor de la página */
+    /*padding: 20px; /* Añade padding alrededor del contenido */
+    /*box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
 }
 
-.header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,8 +18,9 @@ html, body {
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    height: 60px; /* Fija la altura del header */
-    position: relative;
+    font-family: Georgia, serif;
+    position: sticky; /* Posición pegajosa */
+    top: 0; /* Fija el header al alcanzar la parte superior */
 }
 
 .header-dark {
@@ -30,11 +30,14 @@ html, body {
     background-color: #fdd55eb1;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 100;
+    font-family: Georgia, serif;
+    text-align: center;
 }
 
 header .logo {
     max-height: 50px;
+    margin-left: 50px;
 }
 
 /* Botón de menú */
@@ -44,13 +47,14 @@ header .logo {
     border: none;
     font-size: 24px;
     cursor: pointer;
+    font-family: Georgia, serif;
 }
 
 /* Sidebar */
 #sidebar {
     position: fixed; /* Cambiar de fixed a absolute */
     left: -200px; /* Inicialmente fuera de la pantalla */
-    top: 80px; /* Ajustar según la altura del header */
+    top: 70px; /* Ajustar según la altura del header */
     width: 200px;
     height: calc(100% - 80px); /* Ajustar la altura */
     background: #695450;
@@ -59,6 +63,7 @@ header .logo {
     margin: 0; /* Elimina márgenes */
     padding: 0; /* Elimina relleno */
     box-sizing: border-box; /* Asegura que el ancho incluya padding y bordes */
+    z-index: 200;
 }
 
 
@@ -81,6 +86,7 @@ header .logo {
     text-decoration: none;
     color: #FFFAEC;
     font-size: 16px;
+    font-family: Georgia, serif;
 }
 
 #sidebar ul li a:hover {
@@ -111,6 +117,64 @@ header .logo {
 
 .contacto:hover {
     background: rgba(99, 57, 43, 0.3);
+}
+
+/* Titulos */
+.titu {
+    font-size: 20px;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+/* Texto font*/
+.font {
+    font-family: Georgia, serif;
+}
+
+/* Sobre Nosotras */
+.integrantes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Espacio entre las cajas */
+    padding: 20px;
+    justify-items: center;
+}
+
+
+/* Cada caja de integrante */
+.integrantes {
+    background-color: #fdd55eb1; /* Color de fondo */
+    border: 2px solid #ccc; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 30px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: transform 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.integrantes:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Imagen del integrante */
+.foto img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ajusta la imagen al tamaño */
+    margin-bottom: 10px;
+}
+
+.font .nombre {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #695450; /* Color del nombre */
+    margin-bottom: 10px;
+}
+
+.font .puesto {
+    font-size: 1em;
+    color: #69545089; /* Color del nombre */
+    margin-bottom: 10px;
 }
 
 /* Vistas */
@@ -158,6 +222,7 @@ header .logo {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: Georgia, serif;
 }
 
 .login-form button {
@@ -168,6 +233,7 @@ header .logo {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: Georgia, serif;
 }
 
 /* Contenedores */
@@ -196,6 +262,7 @@ header .logo {
     overflow-y: scroll;
     border: 1px solid #ccc; /* Opcional: añade un borde para distinguir el contenedor */
     margin-top: 10px; /* Espaciado superior */
+    font-family: Georgia, serif;
 }
 
 /* Sensores */
@@ -223,10 +290,13 @@ header .logo {
     padding: 10px;
     text-align: center;
     border: 1px solid #ccc;
+    font-family: Georgia, serif;
 }
 
 .sensor-records th {
     background-color: #FDD45E;
+    font-family: Georgia, serif;
+    text-align: center;
 }
 
 .sensor-title {
@@ -260,5 +330,30 @@ header .logo {
 
     .sensor-stats {
         grid-template-columns: 1fr;
+    }
+
+    .integrantes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Ajusta la posición de los elementos */
+    .integrantes:nth-child(1) {
+        grid-column: span 1; /* Asegura que cada caja ocupe solo una columna */
+    }
+
+    .integrantes:nth-child(2) {
+        grid-column: span 1;
+    }
+
+    .integrantes:nth-child(3) {
+        grid-column: span 1;
+    }
+
+    .integrantes:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    .integrantes:nth-child(5) {
+        grid-column: span 1;
     }
 }
